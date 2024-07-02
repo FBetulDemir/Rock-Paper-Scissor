@@ -21,11 +21,6 @@ const options = ["rock", "paper", "scissor"];
 let player = 0;
 let computer = 0;
 
-// optionsDiv.addEventListener("click", (event) => {
-//     if (event.target.classList.contains("option")){
-//         startGame(event.target.id);
-//     }
-// });
 
 function startGame(playerButton){
     let randomNumber = Math.floor(Math.random() * options.length);
@@ -35,7 +30,7 @@ function startGame(playerButton){
 
     function compareChoice (){
         if (playerButton == options[randomNumber]){
-            resultDisplay.innerText= "It is a tie! No winner.";
+            resultDisplay.innerText= "It is a tie! No winner in this turn.";
         }else if(
             (playerButton == "rock" && computerSelection == "scissor") || 
             (playerButton == "paper" && computerSelection == "rock") || 
@@ -43,9 +38,11 @@ function startGame(playerButton){
         ){
                 player ++;
                 playerScore.innerText = `Player : ${player}`;
+                resultDisplay.innerText= "Player wins this turn and receives 1 point";
         }else {
             computer ++;
             computerScore.innerText = `Computer : ${computer}`;
+            resultDisplay.innerText= "Computer wins this turn and receives 1 point";
         };
     };
 
@@ -55,8 +52,13 @@ function startGame(playerButton){
     turnsLeft.innerText= `You have ${turns} turns left.`;
     if (turns === 0){
         resultDisplay.innerText = player > computer ? "You won!" : "You lost!";
+        if (player === computer){
+            resultDisplay.innerText = "No one wins!";
+        }
         optionsDiv.style.display= "none";
-        // optionsDiv.removeEventListener("click", startGame);
+        turnsLeft.style.display= "none";
+        document.querySelector(".choice-display").style.display= "none";
+        resultDisplay.style.color = "red";
     };
     
 };

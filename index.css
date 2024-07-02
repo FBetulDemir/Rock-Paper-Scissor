@@ -1,16 +1,103 @@
-.wrapper{
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #a2a8d3;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.wrapper {
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 2px solid black;
+    justify-content: center;
+    border: 2px solid #000;
+    border-radius: 25px;
+    background-color: #e7eaf6;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 
-button{
-    margin: 5% 10%;
+h1 {
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #333;
 }
 
+.turn, .result {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
 
-
-.options{
+.score {
+    width: 100%;
     display: flex;
+    justify-content: space-around;
+    margin: 15px 0;
+    font-size: 1.2em;
+}
+
+.choice-display {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.choice-display p {
+    margin: 0 20px;
+    font-size: 1.1em;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border: 2px solid #333;
+    border-radius: 10px;
+    background-color: #fff;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+#resultDisplay {
+    font-size: 1.5em;
+    margin-top: 20px;
+    color: #333;
+}
+
+.turn {
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+.result {
+    font-size: 1.5em;
+    margin-top: 20px;
+    color: green;
+}
+
+.result.winner {
+    color: red; 
 }
