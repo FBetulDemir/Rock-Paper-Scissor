@@ -5,76 +5,64 @@
 //function to give limited turns to player
 //show result
 
-let computerScore = document.querySelector('computer_score');
-let playerScore = document.querySelector('player_score');
+const computerScore = document.querySelector('.computer_score');
+const playerScore = document.querySelector('.player_score');
 let computerChoice = document.querySelector(".computer_choice");
-let playerChoice;
+let playerChoice = document.querySelector(".player_choice");
+let resultDisplay = document.getElementById("resultDisplay");
+let turnsLeft = document.querySelector('.turn');
+const optionsDiv = document.querySelector(".options");
+
 let turns = 10;
+let playerButton;
 
-let options = ["rock", "paper", "scissor"];
+const options = ["rock", "paper", "scissor"];
 
-playerScore = 0;
-computerScore = 0;
+let player = 0;
+let computer = 0;
 
+// optionsDiv.addEventListener("click", (event) => {
+//     if (event.target.classList.contains("option")){
+//         startGame(event.target.id);
+//     }
+// });
 
-document.getElementById('show-rock').addEventListener('click', function() {
-    showButton('rock');
-});
-
-document.getElementById('show-paper').addEventListener('click', function() {
-    showButton('paper');
-});
-
-document.getElementById('show-scissor').addEventListener('click', function() {
-    showButton('scissor');
-});
-
-function showButton(buttonId) {
-    // Hide all buttons
-    document.getElementById('rock').style.display = 'none';
-    document.getElementById('paper').style.display = 'none';
-    document.getElementById('scissor').style.display = 'none';
-
-    document.getElementById('show-rock').style.display = 'none';
-    document.getElementById('show-paper').style.display = 'none';
-    document.getElementById('show-scissor').style.display = 'none';
-
-    // Show the selected button
-    playerChoice = document.getElementById(buttonId).style.display = 'block';
-    turns --;
-    
-}
-
-
-function getComputerChoice (){
+function startGame(playerButton){
     let randomNumber = Math.floor(Math.random() * options.length);
-    console.log(options[randomNumber]);
-    computerChoice.innerText = "Computer's choice: " + options[randomNumber];
-    return;
+    computerSelection = options[randomNumber];
+    computerChoice.innerText = "Computer's choice: " + computerSelection;
+    playerChoice.innerText = `Player choice : ${playerButton}`;
+
+    function compareChoice (){
+        if (playerButton == options[randomNumber]){
+            resultDisplay.innerText= "It is a tie! No winner.";
+        }else if(
+            (playerButton == "rock" && computerSelection == "scissor") || 
+            (playerButton == "paper" && computerSelection == "rock") || 
+            (playerButton == "scissor" && computerSelection == "paper") 
+        ){
+                player ++;
+                playerScore.innerText = `Player : ${player}`;
+        }else {
+            computer ++;
+            computerScore.innerText = `Computer : ${computer}`;
+        };
+    };
+
+    compareChoice();
+
+    turns --;
+    turnsLeft.innerText= `You have ${turns} turns left.`;
+    if (turns === 0){
+        resultDisplay.innerText = player > computer ? "You won!" : "You lost!";
+        optionsDiv.style.display= "none";
+        // optionsDiv.removeEventListener("click", startGame);
+    };
+    
 };
 
 
 
-// function getPlayerChoice(){
-    
 
-// };
 
-function compareChoice (){
-    let winner;
-    if((playerChoice == "rock" && computerChoice == "scissor") || (playerChoice == "paper" && computerChoice == "rock") || (playerChoice == "scissor" && computerChoice == "paper") ){
-        winner = playerChoice;
-        playerScore ++;
-    }else if (playerChoice == computerChoice){
-        return;
-    }else{
-        winner = computerChoice;
-        computerScore ++;
-    }
-}
 
-compareChoice();
-
-console.log (playerScore);
-console.log (computerScore);
-console.log (turns);

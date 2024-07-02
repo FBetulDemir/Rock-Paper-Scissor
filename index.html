@@ -12,18 +12,18 @@
         <div class="score">
             <p class="computer_score">Computer: </p>
             <p class="player_score">Player: </p>
+            <p class="turn"></p>
         </div>
+        <div class="choice-display">
+            <p class="player_choice"></p>
+            <p class="computer_choice"></p>
+        </div>
+        <div id="resultDisplay"></div>
         <div class="options">
-            <button id="rock"  class="button-display">Rock</button>
-            <button id="paper"  class="button-display">Paper</button>
-            <button id="scissor"  class="button-display">Scissor</button>
-
-            <button id="show-rock">Rock</button>
-            <button id="show-paper">Paper</button>
-            <button id="show-scissor">Scissor</button>
+            <button id="rock"  class="button-display" onclick="startGame('rock')">Rock</button>
+            <button id="paper"  class="button-display" onclick="startGame('paper')">Paper</button>
+            <button id="scissor"  class="button-display" onclick="startGame('scissor')">Scissor</button>
         </div>
-        <p class="computer_choice"> computer choice: </p>
-        <button onclick="getComputerChoice()">submit</button>
         <div>
             <p class="result"></p>
         </div>
